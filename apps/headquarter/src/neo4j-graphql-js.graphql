@@ -1,0 +1,31 @@
+enum Direction {IN,OUT, BOTH}
+
+# Used to define relationship fields and types in the GraphQL schema
+directive @relation(name: String, direction: Direction) on FIELD_DEFINITION
+
+# Used on fields to (optionally) specify the field to be used as the ID for the type
+directive @id on FIELD_DEFINITION
+
+# Used on fields to (optionally) specify fields that should have a uniqueness constraint.
+directive @unique on FIELD_DEFINITION
+
+# Used on fields to indicate an index should be created on this field.
+directive @index on FIELD_DEFINITION
+
+# Used to define custom logic using Cypher
+directive @cypher(statement: String) on FIELD_DEFINITION
+
+# Used to exclude fields or types from the Cypher query generation process. Use when implementing a custom resolver.
+directive @neo4j_ignore on FIELD | FIELD_DEFINITION
+
+# Used for adding additional node labels to types. Can be useful for multi-tenant scenarios where an additional node label is used per tenant.
+directive @additionalLabels(labels: [String]) on FIELD
+
+# Protects fields and types by requiring a valid signed JWT
+directive @isAuthenticated on FIELD | FIELD_DEFINITION
+
+# Protects fields and types by limiting access to only requests with valid roles
+directive @hasRole(roles: [String]) on FIELD | FIELD_DEFINITION
+
+# Protects fields and types by limiting access to only requests with valid scopes
+directive @hasScope(scopes: [String]) on FIELD | FIELD_DEFINITION

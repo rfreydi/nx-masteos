@@ -1,18 +1,23 @@
-/**
- * This is not a production server yet!
- * This is only a minimal backend to get started.
- */
+import { makeAugmentedSchema } from 'neo4j-graphql-js';
+import { ApolloServer } from 'apollo-server';
+import neo4j from 'neo4j-driver';
 
-import * as express from 'express';
+import { typeDefs } from './app/type-defs';
 
-const app = express();
+const schema = makeAugmentedSchema({ typeDefs });
 
-app.get('/api', (req, res) => {
-  res.send({ message: 'Welcome to headquarter!' });
+const driver = neo4j.driver(
+  'bolt://localhost:7687',
+  neo4j.auth.basic('neo4j', 'test123')
+);
+
+const server = new ApolloServer({
+  schema,
+  context: {
+    driver
+  }
 });
 
-const port = process.env.port || 3333;
-const server = app.listen(port, () => {
-  console.log(`Listening at http://localhost:${port}/api`);
+server.listen(3003, 'localhost').then(({ url }) => {
+  console.log(`GraphQL API ready at ${url}graphql`);
 });
-server.on('error', console.error);

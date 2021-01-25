@@ -262,7 +262,8 @@
             "tsConfig": "apps/headquarter/tsconfig.app.json",
             "assets": [
               "apps/headquarter/src/assets"
-            ]
+            ],
+            "webpackConfig": "apps/headquarter/webpack.config.js"
           },
           "configurations": {
             "production": {

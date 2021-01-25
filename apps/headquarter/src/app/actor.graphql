@@ -1,0 +1,5 @@
+type Actor {
+  id: ID!
+  name: String
+  movies: [Movie]
+}
