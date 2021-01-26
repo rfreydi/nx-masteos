@@ -21,6 +21,7 @@
     "basecamp": { "tags": [] },
     "basecamp-e2e": { "tags": [], "implicitDependencies": ["basecamp"] },
     "outpost": { "tags": [] },
-    "headquarter": { "tags": [] }
+    "headquarter": { "tags": [] },
+    "nerve-center": { "tags": [] }
   }
 }

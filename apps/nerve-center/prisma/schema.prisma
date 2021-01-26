@@ -1,0 +1,45 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// datasource db {
+//   provider = "postgresql"
+//   url      = env("DATABASE_URL")
+// }
+
+datasource db {
+   provider = "sqlite"
+   url      = "file:./dev.db"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Actor {
+  id      String @id @default(cuid())
+  name    String
+  movies  Movie[]
+  @@map("actors")
+}
+
+model Movie {
+  movieId    String @id @default(cuid())
+  title      String
+  year       Int
+  plot       String
+  poster     String
+  imdbRating Float
+  actors     Actor[]
+  @@map("movies")
+}
+
+model User {
+  id        String @id @default(cuid())
+  firstName String
+  lastName  String
+  email     String
+  tel       String
+  roles     String // String[] -> https://github.com/prisma/prisma/blob/master/docs/upgrade-guides/upgrading-to-preview019.md
+  createdAt String
+  @@map("users")
+}

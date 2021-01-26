@@ -304,6 +304,65 @@
           }
         }
       }
+    },
+    "nerve-center": {
+      "root": "apps/nerve-center",
+      "sourceRoot": "apps/nerve-center/src",
+      "projectType": "application",
+      "prefix": "nerve-center",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/node:build",
+          "outputs": [
+            "{options.outputPath}"
+          ],
+          "options": {
+            "outputPath": "dist/apps/nerve-center",
+            "main": "apps/nerve-center/src/main.ts",
+            "tsConfig": "apps/nerve-center/tsconfig.app.json",
+            "assets": [
+              "apps/nerve-center/src/assets"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/nerve-center/src/environments/environment.ts",
+                  "with": "apps/nerve-center/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "executor": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "nerve-center:build"
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/nerve-center/**/*.ts"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/apps/nerve-center"
+          ],
+          "options": {
+            "jestConfig": "apps/nerve-center/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   },
   "cli": {

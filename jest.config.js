@@ -4,5 +4,6 @@ module.exports = {
     '<rootDir>/apps/basecamp',
     '<rootDir>/apps/outpost',
     '<rootDir>/apps/headquarter',
+    '<rootDir>/apps/nerve-center',
   ],
 };
